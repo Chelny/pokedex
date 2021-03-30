@@ -5,8 +5,20 @@
   font-size: 18px;
 
   mat-drawer {
+    width: 350px;
+
+    .drawer-content-wrapper {
+      display: grid;
+      grid-template-rows: max-content auto max-content;
+      height: inherit;
+    }
+
     h2 {
       margin: 10px 15px;
+    }
+
+    mat-paginator {
+      place-self: flex-end;
     }
   }
 
@@ -22,5 +34,25 @@
   .pokedex__pokemon-details {
     padding: 20px;
     text-align: center;
+
+    mat-card-header {
+      text-align: left;
+    }
+
+    img {
+      max-width: 500px;
+    }
+
+    .pokedex__pokemon-description {
+      display: -webkit-box;
+      -webkit-line-clamp: 10;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-align: justify;
+
+      &--expanded {
+        -webkit-line-clamp: unset;
+      }
+    }
   }
 }

@@ -11,6 +11,7 @@ export class AppComponent {
   public maxItems: number = 150;
   public pokemonList: PokemonInterface[] = [];
   public pokemon: any | null = null;
+  public readMore: boolean = false;
 
   constructor(private pokemonService: PokemonService) {
     this.pokemonService.getPokemonList();
@@ -25,6 +26,7 @@ export class AppComponent {
 
   public getPokemonDetails(name: string): void {
     this.pokemonService.getPokemon(name);
+    this.readMore = false;
   }
 
   public listNavigation(pagination: {length: number, pageIndex: number, pageSize: number, previousPageIndex?: number}): void {
