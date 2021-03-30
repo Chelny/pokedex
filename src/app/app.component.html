@@ -1,0 +1,44 @@
+<mat-drawer-container class="pokedex" [hasBackdrop]="false" autosize>
+  <mat-drawer #drawer mode="side" [opened]="true">
+    <h2>Pokémon List</h2>
+
+    <mat-list class="pokedex__pokemon-list">
+      <mat-list-item *ngFor="let pokemon of pokemonList">
+        <button mat-raised-button color="primary" (click)="getPokemonDetails(pokemon.name)">
+          {{ pokemon.name }}
+        </button>
+      </mat-list-item>
+    </mat-list>
+
+    <mat-paginator [length]="maxItems" [pageSize]="limit" [showFirstLastButtons]="true"
+      (page)="listNavigation($event)">
+    </mat-paginator>
+  </mat-drawer>
+
+  <div class="pokedex__pokemon-details">
+    <h1>Pokédex</h1>
+
+    <p *ngIf="!pokemon">
+      Select a Pokémon from the list to view its details.
+    </p>
+
+    <mat-card class="pokedex__pokemon-card" *ngIf="pokemon">
+      <mat-card-header>
+        <div mat-card-avatar [style.background]="'url(' + pokemon.sprites?.front_default + ') center center no-repeat'"></div>
+        <mat-card-title>{{ pokemon.name }}</mat-card-title>
+        <mat-card-subtitle>
+          <span *ngFor="let type of pokemon.types; let last = last">
+            {{ type.type.name }}<ng-container *ngIf="!last">, </ng-container>
+          </span>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="pokemon.sprites?.other['official-artwork']?.front_default"
+         [alt]="pokemon.name" [title]="pokemon.name">
+      <mat-card-content *ngIf="pokemon.evolves_from_species?.name">
+        <p>
+          <b>Evolves from:</b> <button mat-button mat-button color="accent" (click)="getPokemonDetails(pokemon.evolves_from_species.name)">{{ pokemon.evolves_from_species.name }}</button>
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</mat-drawer-container>

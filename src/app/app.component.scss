@@ -1,0 +1,26 @@
+.pokedex {
+  width: 100%;
+  height: 100%;
+  background-color: #FF6961;
+  font-size: 18px;
+
+  mat-drawer {
+    h2 {
+      margin: 10px 15px;
+    }
+  }
+
+  .pokedex__pokemon-list {
+    overflow: auto;
+    background-color: white;
+
+    button {
+      width: -webkit-fill-available;
+    }
+  }
+
+  .pokedex__pokemon-details {
+    padding: 20px;
+    text-align: center;
+  }
+}
